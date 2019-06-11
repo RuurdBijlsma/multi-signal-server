@@ -4,7 +4,7 @@
   "description": "Signal server for WebRTC mesh network",
   "main": "src/index.mjs",
   "scripts": {
-    "start": "node --experimental-modules src/index.mjs -p 5858"
+    "start": "node --experimental-modules src/index.mjs -p 5858 --key /etc/letsencrypt/live/ruurd.dev/privkey.pem --cert /etc/letsencrypt/live/ruurd.dev/fullchain.pem"
   },
   "repository": {
     "type": "git",

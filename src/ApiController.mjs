@@ -83,11 +83,11 @@ class ApiController {
             socket.to(room).emit(event, message);
     }
 
-    static getHttpsCredentials() {
+    static getHttpsCredentials(key, cert) {
         try {
             return {
-                key: fs.readFileSync('/etc/letsencrypt/live/rtc.ruurd.dev/privkey.pem'),
-                cert: fs.readFileSync('/etc/letsencrypt/live/rtc.ruurd.dev/fullchain.pem'),
+                key: fs.readFileSync(key),
+                cert: fs.readFileSync(cert),
             }
         } catch (e) {
             return false;
@@ -99,8 +99,8 @@ class ApiController {
             console.log(...msg);
     }
 
-    start(port = 3000) {
-        let credentials = ApiController.getHttpsCredentials();
+    start(port = 3000, key, cert) {
+        let credentials = ApiController.getHttpsCredentials(key, cert);
         let server;
         if (credentials) {
             console.log("[HTTPS]");
