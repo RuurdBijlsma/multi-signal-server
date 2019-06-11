@@ -8,8 +8,8 @@ import socketIo from "socket.io";
 
 class ApiController {
     constructor() {
-        this.printDebug=false;
-        
+        this.printDebug = false;
+
         this.app = express();
         this.app.use(cors());
         this.app.use(bodyParser.json());
@@ -24,8 +24,7 @@ class ApiController {
                 this.log(`${socket.id} disconnected`);
             });
             socket.on('roomCount', room => {
-                let roomClients = this.io.sockets.adapter.rooms[room];
-                let roomCount = roomClients.length;
+                let roomCount = this.getRoomCount(room);
                 this.log(`${socket.id} requested roomCount ${roomCount}`);
                 socket.emit('roomCount', roomCount);
             });
@@ -36,6 +35,7 @@ class ApiController {
                 socket.join(room);
                 this.socketRooms[socket.id] = room;
                 this.socketBroadcast(socket, 'initialize', socket.id);
+                this.io.in(room).emit('roomCount', this.getRoomCount(room));
             });
             socket.on('leave', room => {
                 this.log(`${socket.id} left room ${room}`);
@@ -54,8 +54,19 @@ class ApiController {
         });
     }
 
-    onDisconnect(socket){
-        socket.to(this.socketRooms[socket.id]).emit('destroy', socket.id);
+    getRoomCount(room) {
+        let roomClients = this.io.sockets.adapter.rooms[room];
+        if (roomClients && roomClients.length)
+            return roomClients.length;
+        return 0;
+    }
+
+    onDisconnect(socket) {
+        let room = this.socketRooms[socket.id];
+        if (room) {
+            this.io.in(room).emit('roomCount', this.getRoomCount(room));
+            socket.to(room).emit('destroy', socket.id);
+        }
         delete this.socketRooms[socket.id];
     }
 
@@ -82,9 +93,9 @@ class ApiController {
             return false;
         }
     }
-    
-    log(...msg){
-        if(this.printDebug)
+
+    log(...msg) {
+        if (this.printDebug)
             console.log(...msg);
     }
 
