@@ -1,14 +1,30 @@
 {
   "name": "signal-server",
   "version": "0.0.1",
-  "description": "",
+  "description": "Signal server for WebRTC mesh network",
   "main": "src/index.mjs",
   "scripts": {
     "start": "node --experimental-modules src/index.mjs -p 5858"
   },
-  "keywords": [],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ruurdbijlsma/signal-server.git"
+  },
+  "keywords": [
+    "simple-peer",
+    "webrtc",
+    "swarm",
+    "multi",
+    "peer",
+    "peer-to-peer",
+    "p2p"
+  ],
+  "author": "Ruurd Bijlsma",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ruurdbijlsma/signal-server/issues"
+  },
+  "homepage": "https://github.com/ruurdbijlsma/signal-server#readme",
   "dependencies": {
     "body-parser": "latest",
     "commander": "^2.20.0",
