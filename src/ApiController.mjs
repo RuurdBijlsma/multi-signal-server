@@ -92,6 +92,8 @@ class ApiController {
         } catch (e) {
             if (key && cert)
                 console.log("HTTPS error", e.message);
+            else
+                console.log("No HTTPS key and cert given");
             return false;
         }
     }

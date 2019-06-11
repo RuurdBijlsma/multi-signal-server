@@ -11,4 +11,4 @@ Commander
 
 const port = Commander.port ? Commander.port : 3000;
 
-ApiController.start(port);
+ApiController.start(port, Commander.key, Commander.cert);
