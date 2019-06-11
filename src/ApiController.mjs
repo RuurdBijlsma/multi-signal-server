@@ -103,10 +103,10 @@ class ApiController {
         let credentials = ApiController.getHttpsCredentials();
         let server;
         if (credentials) {
-            this.log("HTTPS");
+            console.log("[HTTPS]");
             server = https.createServer(credentials, this.app);
         } else {
-            this.log("HTTP");
+            console.log("[HTTP]");
             server = http.createServer(this.app);
         }
         this.io = socketIo(server);
