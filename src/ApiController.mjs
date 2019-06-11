@@ -90,6 +90,8 @@ class ApiController {
                 cert: fs.readFileSync(cert),
             }
         } catch (e) {
+            if (key && cert)
+                console.log("HTTPS error", e.message);
             return false;
         }
     }
