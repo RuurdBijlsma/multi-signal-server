@@ -18,7 +18,10 @@ class ApiController {
 
     setSocketRoutes() {
         this.io.on('connection', socket => {
-            socket.emit("socketId", socket.id);
+            socket.emit('connectionInfo', {
+                socketId: socket.id,
+                rooms: this.getAllRoomsInfo()
+            });
             socket.on('disconnect', () => {
                 this.onDisconnect(socket);
                 this.log(`${socket.id} disconnected`);
@@ -51,6 +54,15 @@ class ApiController {
                 // this.io.to(`${socketId}`).emit('hey', 'I just met you');
             });
             this.log(`${socket.id} connected`);
+        });
+    }
+
+    getAllRoomsInfo() {
+        return io.sockets.adapter.rooms.map(room => {
+            return {
+                name: room,
+                userCount: this.getRoomCount(room)
+            }
         });
     }
 
