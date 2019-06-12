@@ -14,14 +14,15 @@ class ApiController {
         this.app.use(cors());
         this.app.use(bodyParser.json());
         this.socketRooms = {};
+
+        this.app.get('/rooms', (req, res) => {
+            res.send(this.getAllRoomsInfo());
+        })
     }
 
     setSocketRoutes() {
         this.io.on('connection', socket => {
-            socket.emit('connectionInfo', {
-                socketId: socket.id,
-                rooms: this.getAllRoomsInfo()
-            });
+            socket.emit('socketId', socket.id);
             socket.on('disconnect', () => {
                 this.onDisconnect(socket);
                 this.log(`${socket.id} disconnected`);
@@ -58,7 +59,8 @@ class ApiController {
     }
 
     getAllRoomsInfo() {
-        return io.sockets.adapter.rooms.map(room => {
+        let rooms = Object.keys(this.io.sockets.adapter.rooms);
+        return rooms.map(room => {
             return {
                 name: room,
                 userCount: this.getRoomCount(room)
