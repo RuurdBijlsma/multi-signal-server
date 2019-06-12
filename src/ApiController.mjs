@@ -8,7 +8,7 @@ import socketIo from "socket.io";
 
 class ApiController {
     constructor() {
-        this.printDebug = false;
+        this.printDebug = true;
 
         this.app = express();
         this.app.use(cors());
@@ -59,7 +59,7 @@ class ApiController {
     }
 
     getAllRoomsInfo() {
-        let rooms = Object.keys(this.io.sockets.adapter.rooms);
+        let rooms = Object.keys(this.io.sockets.adapter.rooms).filter(room => !(room in this.io.sockets.adapter.sids));
         return rooms.map(room => {
             return {
                 name: room,
