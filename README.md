@@ -1,5 +1,7 @@
 # signal-server
-Signal server to set up WebRTC connections, supports mesh network
+Signal server to set up WebRTC connections, supports mesh network.
+
+execute `node --experimental-modules src/index.mjs -h` to view cli parameters. 
 
 ### Client side WebRTC projects that use this server software
 
