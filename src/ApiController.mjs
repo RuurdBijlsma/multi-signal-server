@@ -16,7 +16,13 @@ class ApiController {
         this.socketRooms = {};
 
         this.app.get('/rooms', (req, res) => {
-            res.send(this.getAllRoomsInfo());
+            let roomInfo = this.getAllRoomsInfo();
+            if (roomInfo.length === 0)
+                roomInfo.push({
+                    name: 'default',
+                    userCount: 0
+                });
+            res.send(roomInfo);
         })
     }
 
