@@ -17,12 +17,12 @@ class ApiController {
 
         this.app.get('/rooms', (req, res) => {
             let roomInfo = this.getAllRoomsInfo();
-            if (roomInfo.length === 0)
+            if (!roomInfo.find(r => r.name === 'default'))
                 roomInfo.push({
                     name: 'default',
                     userCount: 0
                 });
-            res.send(roomInfo);
+            res.send(roomInfo.sort((a, b) => b.userCount - a.userCount));
         })
     }
 
