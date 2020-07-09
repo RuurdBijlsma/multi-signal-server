@@ -2,7 +2,8 @@
   "name": "multi-signal-server",
   "version": "0.1.0",
   "description": "Server module for multi-peer-mesh and multi-peer-server/client",
-  "main": "src/SignalModule.mjs",
+  "main": "src/server/SignalModule.mjs",
+  "browser": "src/client-api/SignalModule.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -56,7 +56,7 @@ export default class SignalModule extends ApiModule {
                 room.sockets.push(socket);
                 Log.l('Signal', `${socket.id} has been pushed to room (in join): ${roomId}`);
                 this.updateRoom(appName);
-                this.socketBroadcast(socket, 'initialize', 'client', socket.id);
+                this.socketBroadcast(socket, 'initialize', 'client-api', socket.id);
                 this.io.in(room.roomId).emit('room-count', room.userCount);
             });
             socket.on('leave', (appName, roomId) => {
