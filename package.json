@@ -1,35 +1,15 @@
 {
-  "name": "signal-server",
-  "version": "0.0.1",
-  "description": "Signal server for WebRTC mesh network",
-  "main": "src/index.mjs",
+  "name": "multi-signal-server",
+  "version": "0.1.0",
+  "description": "Server module for multi-peer-mesh and multi-peer-server/client",
+  "main": "src/SignalModule.mjs",
   "scripts": {
-    "start": "node --experimental-modules src/index.mjs -p 5858 --key /etc/letsencrypt/live/ruurd.dev/privkey.pem --cert /etc/letsencrypt/live/ruurd.dev/fullchain.pem"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ruurdbijlsma/signal-server.git"
-  },
-  "keywords": [
-    "simple-peer",
-    "webrtc",
-    "swarm",
-    "multi",
-    "peer",
-    "peer-to-peer",
-    "p2p"
-  ],
-  "author": "Ruurd Bijlsma",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ruurdbijlsma/signal-server/issues"
-  },
-  "homepage": "https://github.com/ruurdbijlsma/signal-server#readme",
   "dependencies": {
-    "body-parser": "latest",
-    "commander": "^2.20.0",
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "socket.io": "^2.2.0"
+    "bcrypt": "^5.0.0"
   }
 }
