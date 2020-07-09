@@ -1,6 +1,6 @@
 {
   "name": "multi-signal-server",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Server module for multi-peer-mesh and multi-peer-server/client",
   "main": "src/server/SignalModule.mjs",
   "browser": "src/client-api/SignalModule.js",
