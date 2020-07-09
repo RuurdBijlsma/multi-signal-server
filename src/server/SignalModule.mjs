@@ -117,8 +117,7 @@ export default class SignalModule extends ApiModule {
             secured: room.secured,
         }))
 
-        const nonHiddenApps = ['peercord'];
-        for (let app of nonHiddenApps) {
+        for (let app of this.nonHiddenApps) {
             if (rooms.filter(room => room.appName === app).length === 0) {
                 rooms.push({
                     id: 'default',
