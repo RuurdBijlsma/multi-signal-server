@@ -1,5 +1,5 @@
 import EventEmitter from 'events';
-import socketIo from "socket.io-client-api";
+import socketIo from "socket.io-client";
 
 export default class SignalModule extends EventEmitter {
     constructor(appName) {
