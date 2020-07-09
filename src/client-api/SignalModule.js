@@ -33,7 +33,7 @@ export default class SignalModule extends EventEmitter {
     }
 
     message(socketId, event, ...message) {
-        console.log(`emitting message ${socketId} ${event}`, message);
+        // console.log(`emitting message ${socketId} ${event}`, message);
         this.socket.emit('message', socketId, event, ...message);
     }
 
