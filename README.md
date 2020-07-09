@@ -1,4 +1,4 @@
-# signal-server
+# multi-signal-server
 Signal server to set up WebRTC connections.
 
 Works in connection with:
